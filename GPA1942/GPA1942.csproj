@@ -59,6 +59,7 @@
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />
     <Compile Include="GameObjects\Bullet.cs" />
+    <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GPA1942.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
