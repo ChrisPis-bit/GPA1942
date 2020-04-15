@@ -15,7 +15,7 @@ public class SpriteSheet
     {
         // retrieve the sprite
         sprite = GameEnvironment.AssetManager.GetSprite(assetname);
-        
+
         // construct the collision mask
         Color[] colorData = new Color[sprite.Width * sprite.Height];
         collisionMask = new bool[sprite.Width * sprite.Height];
@@ -65,6 +65,18 @@ public class SpriteSheet
         int row_index = sheetIndex / sheetColumns % sheetRows;
 
         return collisionMask[column_index * Width + x + (row_index * Height + y) * sprite.Width];
+    }
+
+    //Changes the color of a sprite
+    public void ChangeColor(Color color)
+    {
+        Color[] data = new Color[sprite.Width * sprite.Height];
+        for (int i = 0; i < data.Length; ++i)
+        {
+            if (data[i].A != 255)
+                data[i] = color;
+        }
+        sprite.SetData(data);
     }
 
     public Texture2D Sprite

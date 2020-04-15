@@ -16,7 +16,7 @@ namespace GPA1942
         protected override void LoadContent()
         {
             base.LoadContent();
-            screen = new Point(800, 600);
+            screen = new Point(600, 800);
             ApplyResolutionSettings();
 
             // TODO: use this.Content to load your game content here
