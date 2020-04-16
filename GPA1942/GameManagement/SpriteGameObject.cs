@@ -127,5 +127,15 @@ public class SpriteGameObject : GameObject
             position.Y = GameEnvironment.Screen.Y;
         }
     }
+
+    public bool OutOfScreen
+    {
+        get {
+            return BoundingBox.X + BoundingBox.Width < 0 ||
+              BoundingBox.X > GameEnvironment.Screen.X ||
+              BoundingBox.Y + BoundingBox.Height < 0 ||
+              BoundingBox.Y > GameEnvironment.Screen.Y;
+        }
+    }
 }
 

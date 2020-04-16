@@ -17,7 +17,7 @@ namespace GPA1942
             FRICTION = 0.90f,
             EYE_CENTER_DIST = 5;
 
-        SpriteGameObject playerBody;
+        public SpriteGameObject playerBody;
         SpriteGameObject eyes;
 
         Vector2 centerPosEyes;
