@@ -15,6 +15,9 @@ namespace GPA1942
         GameObjectList theEnemies,
             theBullets;
 
+        const int SPAWN_CHANCE_ENEMY = 100,
+                  SPAWN_CHANCE_U_ENEMY = 500;
+
         public PlayingState() : base()
         {
             Add(new SpriteGameObject("BackGround"));
@@ -23,15 +26,13 @@ namespace GPA1942
             Add(theBullets = new GameObjectList());
 
             Add(thePlayer = new Player());
-
-            theEnemies.Add(new Enemy(Vector2.Zero));
-            theEnemies.Add(new EnemyTypeU(new Vector2(GameEnvironment.Screen.X/2, 0)));
-
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            SpawnEnemies();
 
             foreach (Bullet bullet in theBullets.Children)
             {
@@ -67,6 +68,20 @@ namespace GPA1942
             if (inputHelper.KeyPressed(Keys.Space))
             {
                 theBullets.Add(new Bullet(thePlayer.GlobalPosition));
+            }
+        }
+
+        //Spawns the enemies
+        public void SpawnEnemies()
+        {
+            if(GameEnvironment.Random.Next(0, SPAWN_CHANCE_ENEMY) == 0)
+            {
+                theEnemies.Add(new Enemy());
+            }
+
+            if (GameEnvironment.Random.Next(0, SPAWN_CHANCE_U_ENEMY) == 0)
+            {
+                theEnemies.Add(new EnemyTypeU());
             }
         }
     }

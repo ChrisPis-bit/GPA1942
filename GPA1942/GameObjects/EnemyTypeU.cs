@@ -14,7 +14,7 @@ namespace GPA1942
             xSpeed = 0.05f,
             xZigZag = 0;
 
-        public EnemyTypeU(Vector2 position) : base(position)
+        public EnemyTypeU() : base()
         {
             velocity.Y = velocity.Y / 1.5f;
         }

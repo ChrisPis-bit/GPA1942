@@ -12,8 +12,8 @@ namespace GPA1942
     {
         float angle;
 
-        const float ACCELERATION = 20,
-            MAX_SPEED = 250,
+        const float ACCELERATION = 30,
+            MAX_SPEED = 500,
             FRICTION = 0.90f,
             EYE_CENTER_DIST = 5;
 

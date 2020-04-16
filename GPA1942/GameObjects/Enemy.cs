@@ -10,11 +10,11 @@ namespace GPA1942
     class Enemy : RotatingSpriteGameObject
     {
         //Speed used for normal enemies
-        protected Vector2 baseSpeed = new Vector2(0, 40);
+        protected Vector2 baseSpeed = new Vector2(0, 80);
 
-        public Enemy(Vector2 position, string assetName = "Enemy") : base(assetName)
+        public Enemy(string assetName = "Enemy") : base(assetName)
         {
-            this.position = position;
+            position = new Vector2(GameEnvironment.Random.Next(0, GameEnvironment.Screen.X - BoundingBox.Width), 0 - BoundingBox.Height);
             velocity = baseSpeed;
         }
     }
