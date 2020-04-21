@@ -9,11 +9,24 @@ namespace GPA1942
 {
     class Bullet : RotatingSpriteGameObject
     {
-        public Bullet(Vector2 position) : base("Bullet")
+        protected const float SPEED = 300;
+
+        public Bullet(Vector2 position, string assetName = "Bullet") : base(assetName)
         {
+            offsetDegrees = 90;
             Origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
             this.position = position;
-            velocity.Y = -500;
+            velocity.Y = -SPEED;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (OutOfScreen)
+            {
+                Visible = false;
+            }
         }
     }
 }

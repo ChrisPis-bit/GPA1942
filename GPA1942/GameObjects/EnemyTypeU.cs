@@ -21,13 +21,13 @@ namespace GPA1942
             score = ENEMYU_SCORE;
 
             velocity.Y = velocity.Y / 1.5f;
-
-
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            AngularDirection = Velocity;
+
             xZigZag += xSpeed;
             xMovement = xSpeedAmpl * (float)Math.Cos(xZigZag);
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GPA1942.GameObjects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace GPA1942
             theBullets;
 
         const int SPAWN_CHANCE_ENEMY = 100,
-                  SPAWN_CHANCE_U_ENEMY = 500;
+                  SPAWN_CHANCE_U_ENEMY = 400,
+                  SPAWN_CHANCE_S_ENEMY = 700;
 
         public PlayingState() : base()
         {
@@ -40,7 +42,7 @@ namespace GPA1942
             {
                 foreach (Enemy enemy in theEnemies.Children)
                 {
-                    if (enemy.CollidesWith(bullet))
+                    if (enemy.CollidesWith(bullet) && !(bullet is EnemyBullet))
                     {
                         bullet.Visible = false;
                         enemy.Visible = false;
@@ -49,18 +51,38 @@ namespace GPA1942
                     }
                 }
 
-                if (bullet.OutOfScreen)
+                if (thePlayer.playerBody.CollidesWith(bullet) && bullet is EnemyBullet)
                 {
                     bullet.Visible = false;
                 }
             }
 
-            for(int iBullet = 0; iBullet < theBullets.Children.Count(); iBullet++)
+            foreach (Enemy enemy in theEnemies.Children)
+            {
+                if (enemy is ShootingEnemy)
+                {
+                    if ((enemy as ShootingEnemy).fireBullet)
+                        theBullets.Add(new EnemyBullet(enemy.GlobalPosition, enemy.AngularDirection));
+
+                    (enemy as ShootingEnemy).FollowObject(thePlayer.playerBody);
+                }
+            }
+
+            for (int iBullet = 0; iBullet < theBullets.Children.Count(); iBullet++)
             {
                 if (!theBullets.Children[iBullet].Visible)
                 {
                     theBullets.Children.RemoveAt(iBullet);
                     iBullet--;
+                }
+            }
+
+            for (int iEnemy = 0; iEnemy < theEnemies.Children.Count(); iEnemy++)
+            {
+                if (!theEnemies.Children[iEnemy].Visible)
+                {
+                    theEnemies.Children.RemoveAt(iEnemy);
+                    iEnemy--;
                 }
             }
         }
@@ -78,7 +100,7 @@ namespace GPA1942
         //Spawns the enemies
         public void SpawnEnemies()
         {
-            if(GameEnvironment.Random.Next(0, SPAWN_CHANCE_ENEMY) == 0)
+            if (GameEnvironment.Random.Next(0, SPAWN_CHANCE_ENEMY) == 0)
             {
                 theEnemies.Add(new Enemy());
             }
@@ -86,6 +108,11 @@ namespace GPA1942
             if (GameEnvironment.Random.Next(0, SPAWN_CHANCE_U_ENEMY) == 0)
             {
                 theEnemies.Add(new EnemyTypeU());
+            }
+
+            if (GameEnvironment.Random.Next(0, SPAWN_CHANCE_S_ENEMY) == 0)
+            {
+                theEnemies.Add(new ShootingEnemy());
             }
         }
     }
