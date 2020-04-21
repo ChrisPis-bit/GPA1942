@@ -14,8 +14,18 @@ namespace GPA1942
 
         public Enemy(string assetName = "Enemy") : base(assetName)
         {
+            Origin = new Vector2(Width / 2, Height / 2);
+            offsetDegrees = 90;
             position = new Vector2(GameEnvironment.Random.Next(0, GameEnvironment.Screen.X - BoundingBox.Width), 0 - BoundingBox.Height);
             velocity = baseSpeed;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            AngularDirection = Velocity;
+            
         }
     }
 }

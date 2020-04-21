@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,6 @@ namespace GPA1942
         {
             Add(playerBody = new SpriteGameObject("Player"));
             Add(eyes = new SpriteGameObject("Eyes"));
-
             Reset();
         }
 

@@ -14,9 +14,11 @@ namespace GPA1942
             xSpeed = 0.05f,
             xZigZag = 0;
 
-        public EnemyTypeU() : base()
+        public EnemyTypeU() : base("EnemyU")
         {
             velocity.Y = velocity.Y / 1.5f;
+
+
         }
 
         public override void Update(GameTime gameTime)
