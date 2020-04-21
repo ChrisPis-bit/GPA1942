@@ -61,6 +61,13 @@
 /processorParam:TextureFormat=Color
 /build:Eyes.png
 
+#begin GameFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:GameFont.spritefont
+
 #begin Player.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -11,9 +11,14 @@ namespace GPA1942
     {
         //Speed used for normal enemies
         protected Vector2 baseSpeed = new Vector2(0, 80);
+        const int ENEMY_SCORE = 100;
+
+        public int score;
 
         public Enemy(string assetName = "Enemy") : base(assetName)
         {
+            score = 100;
+
             position = new Vector2(GameEnvironment.Random.Next(0, GameEnvironment.Screen.X - BoundingBox.Width), 0 - BoundingBox.Height);
             velocity = baseSpeed;
         }

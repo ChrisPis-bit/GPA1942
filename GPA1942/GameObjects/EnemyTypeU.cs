@@ -9,6 +9,8 @@ namespace GPA1942
 {
     class EnemyTypeU : Enemy
     {
+        const int ENEMYU_SCORE = 200;
+
         private float xMovement,
             xSpeedAmpl = 300,
             xSpeed = 0.05f,
@@ -16,6 +18,8 @@ namespace GPA1942
 
         public EnemyTypeU() : base()
         {
+            score = ENEMYU_SCORE;
+
             velocity.Y = velocity.Y / 1.5f;
         }
 
