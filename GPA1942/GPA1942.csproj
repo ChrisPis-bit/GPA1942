@@ -63,6 +63,7 @@
     <Compile Include="GameObjects\EnemyBullet.cs" />
     <Compile Include="GameObjects\EnemyTypeU.cs" />
     <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameObjects\Score.cs" />
     <Compile Include="GPA1942.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="Program.cs" />

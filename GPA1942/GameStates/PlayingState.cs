@@ -11,6 +11,7 @@ namespace GPA1942
     class PlayingState : GameObjectList
     {
         Player thePlayer;
+        Score theScore;
 
         GameObjectList theEnemies,
             theBullets;
@@ -26,6 +27,7 @@ namespace GPA1942
             Add(theBullets = new GameObjectList());
 
             Add(thePlayer = new Player());
+            Add(theScore = new Score());
         }
 
         public override void Update(GameTime gameTime)
@@ -42,6 +44,8 @@ namespace GPA1942
                     {
                         bullet.Visible = false;
                         enemy.Visible = false;
+
+                        theScore.GetScore += enemy.score;
                     }
                 }
 
