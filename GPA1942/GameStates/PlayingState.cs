@@ -11,10 +11,11 @@ namespace GPA1942
 {
     class PlayingState : GameObjectList
     {
-        Player thePlayer;
-        Score theScore;
+        private Player thePlayer;
+        private Lives theLives;
+        public Score theScore;
 
-        GameObjectList theEnemies,
+        private GameObjectList theEnemies,
             theBullets;
 
         const int SPAWN_CHANCE_ENEMY = 100,
@@ -29,7 +30,18 @@ namespace GPA1942
             Add(theBullets = new GameObjectList());
 
             Add(thePlayer = new Player());
+            Add(theLives = new Lives());
             Add(theScore = new Score());
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+
+            theEnemies.Children.Clear();
+            theBullets.Children.Clear();
+            theScore.Reset();
+            thePlayer.Reset();
         }
 
         public override void Update(GameTime gameTime)
@@ -54,6 +66,7 @@ namespace GPA1942
                 if (thePlayer.playerBody.CollidesWith(bullet) && bullet is EnemyBullet)
                 {
                     bullet.Visible = false;
+                    theLives.LiveAmount--;
                 }
             }
 
@@ -65,6 +78,12 @@ namespace GPA1942
                         theBullets.Add(new EnemyBullet(enemy.GlobalPosition, enemy.AngularDirection));
 
                     (enemy as ShootingEnemy).FollowObject(thePlayer.playerBody);
+                }
+
+                if (enemy.CollidesWith(thePlayer.playerBody))
+                {
+                    theLives.LiveAmount--;
+                    enemy.Visible = false;
                 }
             }
 
@@ -84,6 +103,11 @@ namespace GPA1942
                     theEnemies.Children.RemoveAt(iEnemy);
                     iEnemy--;
                 }
+            }
+
+            if (theLives.LiveAmount <= 0)
+            {
+                GameEnvironment.GameStateManager.SwitchTo("DeathState");
             }
         }
 

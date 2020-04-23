@@ -21,6 +21,7 @@ namespace GPA1942
 
             // TODO: use this.Content to load your game content here
             GameStateManager.AddGameState("PlayingState", new PlayingState());
+            GameStateManager.AddGameState("DeathState", new DeathState());
 
             GameStateManager.SwitchTo("PlayingState");
         }
