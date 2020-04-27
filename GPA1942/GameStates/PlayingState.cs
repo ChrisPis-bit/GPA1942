@@ -13,6 +13,7 @@ namespace GPA1942
     {
         private Player thePlayer;
         private Lives theLives;
+        private BackGround backGround;
         public Score theScore;
 
         private GameObjectList theEnemies,
@@ -24,7 +25,7 @@ namespace GPA1942
 
         public PlayingState() : base()
         {
-            Add(new SpriteGameObject("BackGround"));
+            Add(backGround = new BackGround());
 
             Add(theEnemies = new GameObjectList());
             Add(theBullets = new GameObjectList());
@@ -42,6 +43,7 @@ namespace GPA1942
             theBullets.Children.Clear();
             theScore.Reset();
             thePlayer.Reset();
+            backGround.Reset();
         }
 
         public override void Update(GameTime gameTime)
