@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GPA1942
+namespace GeometryClash
 {
     class Score : TextGameObject
     {

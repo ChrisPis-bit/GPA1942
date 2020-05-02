@@ -1,4 +1,4 @@
-﻿using GPA1942.GameObjects;
+﻿using GeometryClash.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GPA1942
+namespace GeometryClash
 {
     class PlayingState : GameObjectList
     {
         private Player thePlayer;
         private Lives theLives;
         private BackGround backGround;
+        private GeometryClashParticles theParticles;
         public Score theScore;
 
         private GameObjectList theEnemies,
@@ -24,15 +25,16 @@ namespace GPA1942
                   SPAWN_CHANCE_U_ENEMY = 200,
                   SPAWN_CHANCE_S_ENEMY = 350;
 
-        
         const float ENEMY_SPAWN_INCREASE = 0.0001f, //Defines how fast the enemy spawn chance increases
-            MAX_ENEMY_SPAWN_MULTIPLIER = 0.2f;
-
+                    MAX_ENEMY_SPAWN_MULTIPLIER = 0.2f;
+                    
         float enemySpawnMultiplier;
 
         public PlayingState() : base()
         {
             Add(backGround = new BackGround());
+
+            Add(theParticles = new GeometryClashParticles());
 
             Add(theEnemies = new GameObjectList());
             Add(theBullets = new GameObjectList());
@@ -62,7 +64,7 @@ namespace GPA1942
             enemySpawnMultiplier -= ENEMY_SPAWN_INCREASE;
 
             //Stops the decrease of the spawn multiplier once it reaches max difficulty
-            if(enemySpawnMultiplier <= MAX_ENEMY_SPAWN_MULTIPLIER)
+            if (enemySpawnMultiplier <= MAX_ENEMY_SPAWN_MULTIPLIER)
             {
                 enemySpawnMultiplier = MAX_ENEMY_SPAWN_MULTIPLIER;
             }
@@ -82,6 +84,8 @@ namespace GPA1942
                         enemy.Visible = false;
 
                         theScore.GetScore += enemy.score;
+
+                        theParticles.SpawnEnemyParticles(enemy.GlobalPosition);
                     }
                 }
 
@@ -90,6 +94,7 @@ namespace GPA1942
                 {
                     bullet.Visible = false;
                     theLives.LiveAmount--;
+                    theParticles.SpawnPlayerParticles(thePlayer.GlobalPosition);
                 }
             }
 
@@ -114,6 +119,7 @@ namespace GPA1942
                 {
                     theLives.LiveAmount--;
                     enemy.Visible = false;
+                    theParticles.SpawnPlayerParticles(thePlayer.GlobalPosition);
                 }
             }
 

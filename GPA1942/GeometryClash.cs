@@ -2,12 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace GPA1942
+namespace GeometryClash
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class GPA1942 : GameEnvironment
+    public class GeometryClash : GameEnvironment
     {
         /// <summary>
         /// LoadContent will be called once per game and is the place to load

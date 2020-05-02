@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GPA1942
+namespace GeometryClash
 {
 #if WINDOWS || LINUX
     /// <summary>
@@ -14,7 +14,7 @@ namespace GPA1942
         [STAThread]
         static void Main()
         {
-            using (var game = new GPA1942())
+            using (var game = new GeometryClash())
                 game.Run();
         }
     }

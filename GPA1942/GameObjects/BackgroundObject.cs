@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GPA1942.GameObjects
+namespace GeometryClash.GameObjects
 {
     class BackgroundObject : RotatingSpriteGameObject
     {

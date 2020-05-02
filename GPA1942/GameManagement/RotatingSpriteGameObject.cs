@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GPA1942
+namespace GeometryClash
 {
     /// <summary>
     /// SpriteGameObject that handles rotated sprites. Overrides Draw method WITHOUT call to base.Draw.
