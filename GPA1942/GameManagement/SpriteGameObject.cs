@@ -5,11 +5,14 @@ public class SpriteGameObject : GameObject
 {
     protected SpriteSheet sprite;
     protected Vector2 origin;
+    protected Color shade;
     public bool PerPixelCollisionDetection = true;
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
         : base(layer, id)
     {
+        shade = Color.White;
+
         if (assetName != "")
         {
             sprite = new SpriteSheet(assetName, sheetIndex);
@@ -26,12 +29,18 @@ public class SpriteGameObject : GameObject
         {
             return;
         }
-        sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        sprite.Draw(spriteBatch, this.GlobalPosition, origin, Shade);
     }
 
     public SpriteSheet Sprite
     {
         get { return sprite; }
+    }
+
+    public Color Shade
+    {
+        get { return shade; }
+        set { shade = value; }
     }
 
     public Vector2 Center

@@ -10,7 +10,7 @@ namespace GPA1942
     class Enemy : RotatingSpriteGameObject
     {
         //Speed used for normal enemies
-        protected Vector2 baseSpeed = new Vector2(0, 80);
+        protected Vector2 baseSpeed = new Vector2(0, 120);
         const int ENEMY_SCORE = 100;
 
         public int score;

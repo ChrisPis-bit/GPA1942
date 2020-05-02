@@ -25,6 +25,8 @@ namespace GPA1942.GameObjects
         {
             base.Reset();
 
+            Children.Clear();
+
             lives = START_LIVES;
 
             for (int iLive = 0; iLive < START_LIVES; iLive++)

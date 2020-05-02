@@ -19,8 +19,7 @@ namespace GPA1942
         {
             base.Reset();
 
-            score = 0;
-            text = "Score = " + score;
+            GetScore = 0;
         }
 
         public int GetScore
