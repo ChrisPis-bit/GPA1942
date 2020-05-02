@@ -72,6 +72,7 @@
     <Compile Include="GameObjects\Score.cs" />
     <Compile Include="GameObjects\ShootingEnemy.cs" />
     <Compile Include="GameStates\DeathState.cs" />
+    <Compile Include="GameStates\TitleScreenState.cs" />
     <Compile Include="GeometryClash.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="Program.cs" />

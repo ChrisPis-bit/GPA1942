@@ -31,11 +31,13 @@ namespace GeometryClash
             Children.Clear();
         }
 
+        //Spawns enemy death particles
         public void SpawnEnemyParticles(Vector2 position)
         {
             SpawnSpriteParticles(ENEMY_PARTICLE_ASSETNAME, position, new Vector2(ENEMY_PARTICLE_SPEED), ENEMY_PARTICLE_AMOUNT, ENEMY_PARTICLE_FADE_TIME);
         }
 
+        //Spawns player hit particles
         public void SpawnPlayerParticles(Vector2 position)
         {
             SpawnSpriteParticles(PLAYER_PARTICLE_ASSETNAME, position, new Vector2(PLAYER_PARTICLE_SPEED), PLAYER_PARTICLE_AMOUNT, PLAYER_PARTICLE_FADE_TIME, PLAYER_PARTICLE_GRAVITY);

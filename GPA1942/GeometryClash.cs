@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GPA1942;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -22,8 +23,9 @@ namespace GeometryClash
             // TODO: use this.Content to load your game content here
             GameStateManager.AddGameState("PlayingState", new PlayingState());
             GameStateManager.AddGameState("DeathState", new DeathState());
+            GameStateManager.AddGameState("TitleScreen", new TitleScreenState());
 
-            GameStateManager.SwitchTo("PlayingState");
+            GameStateManager.SwitchTo("TitleScreen");
         }
 
 

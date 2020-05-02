@@ -14,9 +14,9 @@ namespace GeometryClash
         float angle;
 
         const float ACCELERATION = 30,
-            MAX_SPEED = 500,
-            FRICTION = 0.90f,
-            EYE_CENTER_DIST = 5;
+                    MAX_SPEED = 500,
+                    FRICTION = 0.90f,
+                    EYE_CENTER_DIST = 5; //Distance of the eye sprite from the body origin
 
         public SpriteGameObject playerBody;
         SpriteGameObject eyes;
@@ -34,6 +34,7 @@ namespace GeometryClash
         {
             base.Reset();
             Position = new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y - GameEnvironment.Screen.Y / 8);
+            Velocity = Vector2.Zero;
             playerBody.Origin = new Vector2(playerBody.Width / 2, playerBody.Height / 2);
 
             centerPosEyes = new Vector2(eyes.Width / 2, eyes.Height / 2);
@@ -65,6 +66,7 @@ namespace GeometryClash
         {
             base.HandleInput(inputHelper);
 
+            //Accelarates the player with the up, down, right and left arrows
             if (inputHelper.IsKeyDown(Keys.Up))
             {
                 velocity.Y -= ACCELERATION;
@@ -83,12 +85,7 @@ namespace GeometryClash
             }
         }
 
-        public float DirectionAngle
-        {
-            get { return (float)Math.Atan2(velocity.Y, velocity.X); }
-        }
-
-        //Used for the eyes
+        //Used for the eyes that look in the direction of the velocity
         public Vector2 AngularDirection
         {
             get
