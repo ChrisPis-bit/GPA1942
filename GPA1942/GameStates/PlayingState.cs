@@ -21,14 +21,14 @@ namespace GeometryClash
             theBullets;
 
         //Chances of enemies spawning per frame
-        const int SPAWN_CHANCE_ENEMY = 50,
-                  SPAWN_CHANCE_U_ENEMY = 200,
-                  SPAWN_CHANCE_S_ENEMY = 350;
+        private const int SPAWN_CHANCE_ENEMY = 50, //Cirkel enemy
+                          SPAWN_CHANCE_U_ENEMY = 200, //Triangle enemy
+                          SPAWN_CHANCE_S_ENEMY = 350; //Square enemy
 
-        const float ENEMY_SPAWN_INCREASE = 0.0001f, //Defines how fast the enemy spawn chance increases
-                    MAX_ENEMY_SPAWN_MULTIPLIER = 0.2f;
+        private const float ENEMY_SPAWN_INCREASE = 0.0001f, //Defines how fast the enemy spawn chance increases
+                            MAX_ENEMY_SPAWN_MULTIPLIER = 0.2f;
                     
-        float enemySpawnMultiplier;
+        private float enemySpawnMultiplier;
 
         public PlayingState() : base()
         {

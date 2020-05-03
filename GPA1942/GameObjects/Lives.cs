@@ -9,10 +9,10 @@ namespace GeometryClash.GameObjects
 {
     class Lives : GameObjectList
     {
-        protected const int START_LIVES = 3;
-        protected int lives;
+        private const int START_LIVES = 3;
+        private int lives;
 
-        protected const float LIVE_SPACING = 5;
+        private const float LIVE_SPACING = 5; //Space between each displayed live
 
         public Lives() : base()
         {
@@ -29,6 +29,7 @@ namespace GeometryClash.GameObjects
 
             lives = START_LIVES;
 
+            //Adds 3 player sprites to visualise the player lives
             for (int iLive = 0; iLive < START_LIVES; iLive++)
             {
                 Add(new SpriteGameObject("Player"));
@@ -41,6 +42,7 @@ namespace GeometryClash.GameObjects
             get { return lives; }
             set
             {
+                //Removes a live if the new value is under the original value
                 if (value < lives)
                 {
                     for (int i = 0; i < lives - value; i++)
@@ -48,6 +50,8 @@ namespace GeometryClash.GameObjects
                         Remove(Children[Children.Count() - 1]);
                     }
                 }
+
+                //Adds a live if the new value is above the original value
                 else if (value > lives)
                 {
                     for (int i = 0; i < value - lives; i++)

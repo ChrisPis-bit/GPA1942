@@ -9,14 +9,15 @@ namespace GeometryClash.GameObjects
 {
     class ShootingEnemy : Enemy
     {
-        const float ACCELERATION = 5,
-                    MAX_SPEED = 100;
-        const int SHOOTING_FREQ = 100,
-            ENEMYS_SCORE = 250;
+        private const float ACCELERATION = 5,
+                            MAX_SPEED = 100;
+        private const int SHOOTING_FREQ = 100,
+                          ENEMYS_SCORE = 250;
 
         private int frameCounter;
-        public bool fireBullet;  
-        Vector2 acceleration;
+        private Vector2 acceleration;
+
+        public bool fireBullet;
 
         public ShootingEnemy() : base("EnemyS")
         {
@@ -24,17 +25,20 @@ namespace GeometryClash.GameObjects
             frameCounter = 0;
         }
 
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             frameCounter++;
 
+            //When fire bullet is true, an enemy bullet gets added in the playing state
             if (frameCounter % SHOOTING_FREQ == 0)
             {
                 fireBullet = true;
             }
             else
                 fireBullet = false;
+
 
             //Makes sure the enemy doesn't go above the max speed by clamping the vector x and y
             Velocity = new Vector2(MathHelper.Clamp(velocity.X, -MAX_SPEED, MAX_SPEED),

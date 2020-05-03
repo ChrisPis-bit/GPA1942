@@ -12,11 +12,11 @@ namespace GeometryClash
     {
         private const int Y_TEXT_OFFSET = 100;
 
-        const string SCORE_TEXT = "Score = ",
+        private const string SCORE_TEXT = "Score = ",
                      CONTINUE_TEXT = "Press Enter to continue",
                      DEATH_TEXT = "Game Over";
 
-        TextGameObject scoreText,
+        private TextGameObject scoreText,
                        deathText,
                        continueText;
 

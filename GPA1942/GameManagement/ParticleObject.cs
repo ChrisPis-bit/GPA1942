@@ -9,18 +9,16 @@ namespace GeometryClash
 {
     class ParticleObject : SpriteGameObject
     {
-        protected int fadeTime;
+        protected int fadeTime; //Fade time defines how many frames the particle will be on screen
 
-        protected float gravity;
+        protected float gravity; 
 
         public ParticleObject(string assetname, Vector2 spawnPosition, Vector2 velocity, int fadeTime, float gravity = 0) : base(assetname)
         {
             this.fadeTime = fadeTime;
             this.gravity = gravity;
-
             Position = spawnPosition;
             Velocity = velocity;
-
         }
 
         public override void Update(GameTime gameTime)

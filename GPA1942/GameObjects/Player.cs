@@ -11,9 +11,9 @@ namespace GeometryClash
 {
     class Player : GameObjectList
     {
-        float angle;
+        private float angle;
 
-        const float ACCELERATION = 30,
+        private const float ACCELERATION = 30,
                     MAX_SPEED = 500,
                     FRICTION = 0.90f,
                     EYE_CENTER_DIST = 5; //Distance of the eye sprite from the body origin
@@ -21,7 +21,7 @@ namespace GeometryClash
         public SpriteGameObject playerBody;
         SpriteGameObject eyes;
 
-        Vector2 centerPosEyes;
+        private Vector2 centerPosEyes;
 
         public Player() : base()
         {

@@ -12,16 +12,16 @@ namespace GeometryClash
     class GeometryClashParticles : ParticleObjectList
     {
         //Particle constants
-        protected const int ENEMY_PARTICLE_AMOUNT = 30,
+        private const int ENEMY_PARTICLE_AMOUNT = 30,
                             ENEMY_PARTICLE_FADE_TIME = 40,
                             PLAYER_PARTICLE_AMOUNT = 10,
                             PLAYER_PARTICLE_FADE_TIME = 20;
 
-        protected const float ENEMY_PARTICLE_SPEED = 100,
+        private const float ENEMY_PARTICLE_SPEED = 100,
                               PLAYER_PARTICLE_SPEED = 100,
                               PLAYER_PARTICLE_GRAVITY = 10;
 
-        protected const string ENEMY_PARTICLE_ASSETNAME = "EnemyDeathParticle",
+        private const string ENEMY_PARTICLE_ASSETNAME = "EnemyDeathParticle",
                                PLAYER_PARTICLE_ASSETNAME = "PlayerHitParticle";
 
         public override void Reset()
