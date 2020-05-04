@@ -9,7 +9,7 @@ namespace GeometryClash.GameObjects
 {
     class Lives : GameObjectList
     {
-        private const int START_LIVES = 3;
+        private const int MAX_LIVES = 3;
         private int lives;
 
         private const float LIVE_SPACING = 5; //Space between each displayed live
@@ -27,10 +27,10 @@ namespace GeometryClash.GameObjects
 
             Children.Clear();
 
-            lives = START_LIVES;
+            lives = MAX_LIVES;
 
             //Adds 3 player sprites to visualise the player lives
-            for (int iLive = 0; iLive < START_LIVES; iLive++)
+            for (int iLive = 0; iLive < MAX_LIVES; iLive++)
             {
                 Add(new SpriteGameObject("Player"));
                 Children[iLive].Position = new Vector2(0 - iLive * (LIVE_SPACING + (Children[iLive] as SpriteGameObject).Width), 0);
@@ -49,10 +49,12 @@ namespace GeometryClash.GameObjects
                     {
                         Remove(Children[Children.Count() - 1]);
                     }
+
+                    lives = value;
                 }
 
                 //Adds a live if the new value is above the original value
-                else if (value > lives)
+                else if (value > lives && lives < MAX_LIVES)
                 {
                     for (int i = 0; i < value - lives; i++)
                     {
@@ -60,9 +62,9 @@ namespace GeometryClash.GameObjects
                         Add(new SpriteGameObject("Player"));
                         Children[Children.Count() - 1].Position = position;
                     }
-                }
 
-                lives = value;
+                    lives = value;
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using GeometryClash.GameObjects;
+using GPA1942.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -23,11 +24,12 @@ namespace GeometryClash
         //Chances of enemies spawning per frame
         private const int SPAWN_CHANCE_ENEMY = 50, //Cirkel enemy
                           SPAWN_CHANCE_U_ENEMY = 200, //Triangle enemy
-                          SPAWN_CHANCE_S_ENEMY = 350; //Square enemy
+                          SPAWN_CHANCE_S_ENEMY = 350, //Square enemy
+                          SPAWN_HEALTH_DROP = 400; //Health drop
 
         private const float ENEMY_SPAWN_INCREASE = 0.0001f, //Defines how fast the enemy spawn chance increases
                             MAX_ENEMY_SPAWN_MULTIPLIER = 0.2f;
-                    
+
         private float enemySpawnMultiplier;
 
         public PlayingState() : base()
@@ -78,13 +80,12 @@ namespace GeometryClash
                 foreach (Enemy enemy in theEnemies.Children)
                 {
                     //Makes enemy and bullet invisible and adds score when an enemy is hit
-                    if (enemy.CollidesWith(bullet) && !(bullet is EnemyBullet))
+                    //If the object in enemies is an healthdrop, it won't disappear
+                    if (enemy.CollidesWith(bullet) && !(bullet is EnemyBullet) && !(enemy is HealthDrop))
                     {
                         bullet.Visible = false;
                         enemy.Visible = false;
-
                         theScore.GetScore += enemy.score;
-
                         theParticles.SpawnEnemyParticles(enemy.GlobalPosition);
                     }
                 }
@@ -115,11 +116,20 @@ namespace GeometryClash
                 }
 
                 //If an enemy collides with the player, health is removed and the enemy becomes invisible
+                //If the enemy in the list is an healthdrop, it will increase the health instead
                 if (enemy.CollidesWith(thePlayer.playerBody))
                 {
-                    theLives.LiveAmount--;
-                    enemy.Visible = false;
-                    theParticles.SpawnPlayerParticles(thePlayer.GlobalPosition);
+                    if (enemy is HealthDrop)
+                    {
+                        theLives.LiveAmount++;
+                        enemy.Visible = false;
+                    }
+                    else
+                    {
+                        theLives.LiveAmount--;
+                        enemy.Visible = false;
+                        theParticles.SpawnPlayerParticles(thePlayer.GlobalPosition);
+                    }
                 }
             }
 
@@ -183,6 +193,12 @@ namespace GeometryClash
             if (GameEnvironment.Random.Next(0, (int)(SPAWN_CHANCE_S_ENEMY * enemySpawnMultiplier)) == 0)
             {
                 theEnemies.Add(new ShootingEnemy());
+            }
+
+            //Spawn chance doesnt increase with the enemies
+            if (GameEnvironment.Random.Next(0, (int)(SPAWN_HEALTH_DROP)) == 0)
+            {
+                theEnemies.Add(new HealthDrop());
             }
         }
     }

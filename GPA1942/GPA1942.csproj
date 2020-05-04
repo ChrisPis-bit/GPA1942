@@ -67,6 +67,7 @@
     <Compile Include="GameObjects\EnemyBullet.cs" />
     <Compile Include="GameObjects\GeometryClashParticles.cs" />
     <Compile Include="GameObjects\EnemyTypeU.cs" />
+    <Compile Include="GameObjects\HealthDrop.cs" />
     <Compile Include="GameObjects\Lives.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\Score.cs" />
