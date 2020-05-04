@@ -58,7 +58,7 @@ namespace GeometryClash.GameObjects
                     {
                         Vector2 position = Children[Children.Count() - 1].Position - new Vector2(LIVE_SPACING + (Children[Children.Count() - 1] as SpriteGameObject).Width, 0);
                         Add(new SpriteGameObject("Player"));
-                        Children[Children.Count() - 1].Position = new Vector2(0 - Children.Count() - 1 * (LIVE_SPACING + (Children[Children.Count() - 1] as SpriteGameObject).Width), 0);
+                        Children[Children.Count() - 1].Position = position;
                     }
                 }
 
